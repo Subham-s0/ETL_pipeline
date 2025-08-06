@@ -1,0 +1,39 @@
+{
+    "configurations": [
+        {
+            "name": "ETL: Extraction",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "extract/execute.py",
+            "console": "integratedTerminal",
+            "python": "../pyspark/venv/bin/python",
+            "args": [
+                "/home/Subham/data/extract"
+            ]
+        },
+        {
+            "name": "ETL: Transform",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "transform/execute.py",
+            "console": "integratedTerminal",
+            "python": "../pyspark/venv/bin/python",
+            "args": [
+                "/home/Subham/data/extract","/home/Subham/data/transform"
+            ]
+        },
+        {
+            "name": "ETL: Load",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "load/execute.py",
+            "console": "integratedTerminal",
+            "python": "../pyspark/venv/bin/python",
+            "args": [
+                "/home/Subham/data/transform",
+                "postgres", //username
+                "postgres" //password
+            ]
+        }
+    ]
+}

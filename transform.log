@@ -1,0 +1,9 @@
+2025-08-02 10:57:55,126 [MainThread  ][INFO ] Transformation pipeline started
+2025-08-02 10:59:33,730 [MainThread  ][INFO ] Stage 1 : Cleaned Data Saved
+2025-08-02 11:00:14,169 [MainThread  ][INFO ] Stage 2: Master table saved
+2025-08-02 11:00:14,176 [MainThread  ][INFO ] Stage 3: Create query-optimized tables.
+2025-08-02 11:00:47,202 [MainThread  ][INFO ] Stage 3: Query-optimized tables saved
+2025-08-02 11:00:47,210 [MainThread  ][INFO ] Transformation pipeline completed
+2025-08-02 11:00:47,210 [MainThread  ][INFO ] Total time taken0,2 minutes,52 seconds
+2025-08-02 11:00:47,210 [MainThread  ][INFO ] None
+2025-08-02 11:00:47,900 [MainThread  ][INFO ] Closing down clientserver connection
