@@ -1,7 +1,0 @@
-2025-08-02 09:44:14,199 [MainThread  ][INFO ] Starting Extraction Engine...
-2025-08-02 09:48:18,552 [MainThread  ][INFO ] Downloaded zip file: /home/Subham/data/extract/downloaded.zip
-2025-08-02 09:48:23,655 [MainThread  ][INFO ] Extracted files written to: /home/Subham/data/extract
-2025-08-02 09:48:23,658 [MainThread  ][INFO ] Removing the zip file
-2025-08-02 09:48:44,928 [MainThread  ][INFO ] File /home/Subham/data/extract/dict_artists.json has been fixed and written to /home/Subham/data/extract/fixed_da.json
-2025-08-02 09:48:44,929 [MainThread  ][INFO ] Removing the original file
-2025-08-02 09:48:45,304 [MainThread  ][INFO ] Extraction Successfully Completed!!!
