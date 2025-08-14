@@ -6,13 +6,23 @@ from pyspark.sql import SparkSession
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__),"..")))
 from utility.utility import setup_logging,format_time
 
-def create_spark_session():
+from pyspark.sql import SparkSession
+
+def create_spark_session(logger,spark_config):
     """Initialize Spark session with PostgreSQL JDBC driver."""
-    spark = SparkSession.builder \
-        .appName("SpotifyDataLoad") \
-        .config("spark.jars.packages", "org.postgresql:postgresql:42.2.18") \
+    spark = (
+        SparkSession.builder
+        .master(f"spark://{spark_config['master_ip']}:7077")
+        .appName("SpotifyDataLoad")
+        .config("spark.driver.memory", spark_config["driver_memory"])
+        .config("spark.executor.memory", spark_config["executor_memory"])
+        .config("spark.executor.cores", spark_config["executor_cores"])
+        .config("spark.executor.instances", spark_config["executor_instances"])
+        .config("spark.jars.packages", "org.postgresql:postgresql:42.2.18")
         .getOrCreate()
+    )
     return spark
+
 
 
 def create_postgres_tables(pg_un, pg_pw):
@@ -128,13 +138,25 @@ def load_to_postgres(spark, input_dir, pg_un, pg_pw):
 if __name__ == "__main__":
     logger = setup_logging("load.log")
     
-    if len(sys.argv) != 4:
-        logger.info("Usage: python load/execute.py <input_dir>")
+    if len(sys.argv) != 10:
+        logger.error(
+            "Usage: python load/execute.py <input_dir> <pg_un> <pg_pw> <pg_host> "
+            "<master_ip> <driver_memory> <executor_memory> <executor_cores> <executor_instances>"
+        )
         sys.exit(1)
 
     input_dir = sys.argv[1]
     pg_un = sys.argv[2]
     pg_pw = sys.argv[3]
+    pg_host = sys.argv[4]
+
+    spark_config = {
+        "master_ip": sys.argv[5],
+        "driver_memory": sys.argv[6],
+        "executor_memory": sys.argv[7],
+        "executor_cores": sys.argv[8],
+        "executor_instances": sys.argv[9],
+    }
     if not os.path.exists(input_dir):
         logger.error(f"❌ Error: Input directory '{input_dir}' does not exist")
         sys.exit(1)
